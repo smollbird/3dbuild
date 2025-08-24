@@ -1,0 +1,40 @@
+generator client {
+  provider = "prisma-client-js"
+  binaryTargets = ["native", "darwin-arm64"]
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Vehicle {
+  id         Int        @id @default(autoincrement())
+  name       String
+  components Component[]
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+}
+
+model Component {
+  id         Int      @id @default(autoincrement())
+  name       String
+  vehicle    Vehicle  @relation(fields: [vehicleId], references: [id])
+  vehicleId  Int
+  parts      Part[]
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model Part {
+  id          Int        @id @default(autoincrement())
+  name        String
+  material    String?
+  mass        Float?
+  component   Component  @relation(fields: [componentId], references: [id])
+  componentId Int
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+}
+
+

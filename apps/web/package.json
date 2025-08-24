@@ -1,0 +1,27 @@
+{
+  "name": "threebuild-web",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview --port 5173"
+  },
+  "dependencies": {
+    "vue": "^3.4.38",
+    "vue-router": "^4.4.5",
+    "pinia": "^2.1.7",
+    "three": "^0.160.0",
+    "cannon-es": "^0.20.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.9",
+    "@types/three": "^0.160.0",
+    "@vitejs/plugin-vue": "^5.0.5",
+    "typescript": "^5.5.4",
+    "vite": "^5.4.1"
+  }
+}
+
+

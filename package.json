@@ -1,0 +1,27 @@
+{
+  "name": "3dbuild-monorepo",
+  "private": true,
+  "version": "0.1.0",
+  "description": "3D 商品拆解展示系统 monorepo",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "npm-run-all -p dev:web dev:api",
+    "dev:web": "npm run dev -w apps/web",
+    "dev:api": "npm run dev -w apps/api",
+    "build": "npm run build -w apps/web && npm run build -w apps/api && cargo build --manifest-path apps/rust-engine/Cargo.toml",
+    "figma:pull": "node scripts/fetch-figma.mjs",
+    "db:up": "docker compose up -d db",
+    "db:down": "docker compose down",
+    "db:logs": "docker compose logs -f db",
+    "prisma:generate": "npm exec --workspace apps/api prisma generate",
+    "prisma:migrate": "npm exec --workspace apps/api prisma migrate dev"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.3",
+    "npm-run-all": "^4.1.5"
+  }
+}
