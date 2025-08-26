@@ -20,8 +20,8 @@ export interface Component {
 export interface Part {
   id: number;
   name: string;
-  material?: string;
-  mass?: number;
+  material?: string | null;
+  mass?: number | null;
   componentId: number;
   component?: Component;
   createdAt: Date;
@@ -40,8 +40,8 @@ export interface CreateComponentRequest {
 
 export interface CreatePartRequest {
   name: string;
-  material?: string;
-  mass?: number;
+  material?: string | null;
+  mass?: number | null;
   componentId: number;
 }
 

@@ -37,11 +37,11 @@ export class PartService implements IPartService {
     }
 
     // 质量验证
-    if (data.mass !== undefined && data.mass < 0) {
+    if (data.mass !== undefined && data.mass !== null && data.mass < 0) {
       throw new Error('Part mass cannot be negative');
     }
 
-    if (data.mass !== undefined && data.mass > 10000) {
+    if (data.mass !== undefined && data.mass !== null && data.mass > 10000) {
       throw new Error('Part mass too large (max 10000 kg)');
     }
 
@@ -97,7 +97,7 @@ export class PartService implements IPartService {
     }
 
     // 质量验证
-    if (data.mass !== undefined) {
+    if (data.mass !== undefined && data.mass !== null) {
       if (data.mass < 0) {
         throw new Error('Part mass cannot be negative');
       }
