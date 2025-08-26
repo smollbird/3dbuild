@@ -8,10 +8,18 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "useDefineForClassFields": true,
-    "lib": ["ES2020", "DOM"],
-    "types": ["node"],
-    "allowSyntheticDefaultImports": true
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "types": ["node", "vite/client"],
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["src/*"]
+    }
   },
-  "include": ["src", "env.d.ts"],
+  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue"],
+  "exclude": ["node_modules", "dist"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

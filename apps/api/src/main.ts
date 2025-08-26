@@ -3,9 +3,9 @@ import cors from "cors";
 import dotenv from "dotenv";
 import type { PrismaClient as PrismaClientType } from "@prisma/client";
 import mysql from "mysql2/promise";
-import vehicleRoutes from "./routes/vehicleRoutes.js";
-import componentRoutes from "./routes/componentRoutes.js";
-import partRoutes from "./routes/partRoutes.js";
+import vehicleRoutes from "./routes/vehicleRoutes";
+import componentRoutes from "./routes/componentRoutes";
+import partRoutes from "./routes/partRoutes";
 
 dotenv.config({ path: "../../.env" });
 
