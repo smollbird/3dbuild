@@ -12,7 +12,6 @@
     "dev:web": "npm run dev -w apps/web",
     "dev:api": "npm run dev -w apps/api",
     "build": "npm run build -w apps/web && npm run build -w apps/api && cargo build --manifest-path apps/rust-engine/Cargo.toml",
-    "figma:pull": "node scripts/fetch-figma.mjs",
     "db:up": "docker compose up -d db",
     "db:down": "docker compose down",
     "db:logs": "docker compose logs -f db",
