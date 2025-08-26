@@ -5,7 +5,7 @@ import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
 import { SAOPass } from 'three/examples/jsm/postprocessing/SAOPass.js';
 import { OutputPass } from 'three/examples/jsm/postprocessing/OutputPass.js';
 import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass.js';
-import { FXAAPass } from 'three/examples/jsm/postprocessing/FXAAPass.js';
+import { SMAAPass } from 'three/examples/jsm/postprocessing/SMAAPass.js';
 
 // 渲染质量设置
 export enum RenderQuality {
@@ -82,7 +82,7 @@ export function useAdvancedRenderer() {
   let renderPass: RenderPass | null = null;
   let saoPass: SAOPass | null = null;
   let bloomPass: UnrealBloomPass | null = null;
-  let fxaaPass: FXAAPass | null = null;
+  let smaaPass: SMAAPass | null = null;
   let outputPass: OutputPass | null = null;
 
   // 环境贴图
@@ -204,8 +204,8 @@ export function useAdvancedRenderer() {
 
     // 环境光遮蔽
     if (config.enableAmbientOcclusion) {
-      saoPass = new SAOPass(scene, camera, false, true);
-      saoPass.params.output = SAOPass.OUTPUT.Beauty;
+      saoPass = new SAOPass(scene, camera);
+      saoPass.params.output = SAOPass.OUTPUT.Default;
       saoPass.params.saoBias = 0.5;
       saoPass.params.saoIntensity = 0.18;
       saoPass.params.saoScale = 1;
@@ -227,8 +227,11 @@ export function useAdvancedRenderer() {
 
     // 抗锯齿
     if (config.enableAntialiasing) {
-      fxaaPass = new FXAAPass();
-      composer.addPass(fxaaPass);
+      smaaPass = new SMAAPass(
+        window.innerWidth * renderer.getPixelRatio(),
+        window.innerHeight * renderer.getPixelRatio()
+      );
+      composer.addPass(smaaPass);
     }
 
     // 输出通道

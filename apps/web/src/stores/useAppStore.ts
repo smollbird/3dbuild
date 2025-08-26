@@ -82,7 +82,8 @@ export const useAppStore = defineStore('app', () => {
 
   const currentComponentData = computed(() => {
     if (!selectedComponent.value) return null;
-    return components.value.find(comp => comp.id === selectedComponent.value);
+    const componentId = parseInt(selectedComponent.value);
+    return components.value.find(comp => comp.id === componentId);
   });
 
   // === Actions ===
@@ -127,7 +128,10 @@ export const useAppStore = defineStore('app', () => {
     
     // 如果选择了组件，加载对应的零件
     if (componentId) {
-      loadComponentParts(componentId);
+      const numericComponentId = parseInt(componentId);
+      if (!isNaN(numericComponentId)) {
+        loadComponentParts(numericComponentId);
+      }
     }
   };
 
@@ -221,7 +225,7 @@ export const useAppStore = defineStore('app', () => {
     setLoading(true);
     try {
       const response = await api.vehicle.getAll();
-      if (response.success) {
+      if (response.success && response.data) {
         vehicles.value = response.data;
         
         // 如果有车辆数据，设置第一个为当前车辆
@@ -244,7 +248,7 @@ export const useAppStore = defineStore('app', () => {
   const loadVehicleComponents = async (vehicleId: number) => {
     try {
       const response = await api.component.getByVehicleId(vehicleId);
-      if (response.success) {
+      if (response.success && response.data) {
         components.value = response.data;
       } else {
         throw new Error(response.error || '获取组件数据失败');
@@ -260,7 +264,7 @@ export const useAppStore = defineStore('app', () => {
   const loadComponentParts = async (componentId: number) => {
     try {
       const response = await api.part.getByComponentId(componentId);
-      if (response.success) {
+      if (response.success && response.data) {
         parts.value = response.data;
       } else {
         console.warn('获取零件数据失败:', response.error);

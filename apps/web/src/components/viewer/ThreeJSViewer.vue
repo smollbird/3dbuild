@@ -225,7 +225,8 @@ const {
   render: renderAdvanced,
   setRenderQuality,
   renderStats,
-  currentQuality
+  currentQuality,
+  getRenderer
 } = useAdvancedRenderer();
 
 // 材质管理器
@@ -340,7 +341,8 @@ const useThreeJS = (container: Ref<HTMLDivElement | null>) => {
     cameraRef.value = camera;
 
     // 初始化高级渲染器
-    renderer = initAdvancedRenderer(container.value, scene, camera, RenderQuality.MEDIUM);
+    initAdvancedRenderer(container.value, scene, camera, RenderQuality.MEDIUM);
+    renderer = getRenderer();
     rendererRef.value = renderer;
 
     // 初始化相机控制器
@@ -503,12 +505,13 @@ const useThreeJS = (container: Ref<HTMLDivElement | null>) => {
   return {
     initScene,
     resize,
-    cleanup
+    cleanup,
+    loadCarModel
   };
 };
 
 // Methods
-const { initScene, resize, cleanup } = useThreeJS(threeContainer);
+const { initScene, resize, cleanup, loadCarModel } = useThreeJS(threeContainer);
 
 const handleComponentClick = (componentKey: string) => {
   selectedComponent.value = components[componentKey as keyof typeof components];

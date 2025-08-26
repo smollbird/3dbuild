@@ -194,7 +194,8 @@ export function useModelLoader() {
           loadingState.value.total = progress.total;
         },
         (error) => {
-          reject(new Error(`GLTF加载失败: ${error.message}`));
+          const errorMessage = error instanceof Error ? error.message : String(error);
+          reject(new Error(`GLTF加载失败: ${errorMessage}`));
         }
       );
     });
@@ -226,7 +227,8 @@ export function useModelLoader() {
           loadingState.value.total = progress.total;
         },
         (error) => {
-          reject(new Error(`FBX加载失败: ${error.message}`));
+          const errorMessage = error instanceof Error ? error.message : String(error);
+          reject(new Error(`FBX加载失败: ${errorMessage}`));
         }
       );
     });
@@ -251,7 +253,8 @@ export function useModelLoader() {
           loadingState.value.total = progress.total;
         },
         (error) => {
-          reject(new Error(`OBJ加载失败: ${error.message}`));
+          const errorMessage = error instanceof Error ? error.message : String(error);
+          reject(new Error(`OBJ加载失败: ${errorMessage}`));
         }
       );
     });

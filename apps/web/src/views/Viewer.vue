@@ -52,11 +52,11 @@
 
 <script setup lang="ts">
 import { ref, onMounted, computed, watch } from "vue";
-import BaseLayout from "@/components/layout/BaseLayout";
-import TopNavigation from "@/components/layout/TopNavigation";
-import Toolbar from "@/components/layout/Toolbar";
-import ThreeJSViewer from "@/components/viewer/ThreeJSViewer";
-import RightPanel from "@/components/layout/RightPanel";
+import BaseLayout from "@/components/layout/BaseLayout.vue";
+import TopNavigation from "@/components/layout/TopNavigation.vue";
+import Toolbar from "@/components/layout/Toolbar.vue";
+import ThreeJSViewer from "@/components/viewer/ThreeJSViewer.vue";
+import RightPanel from "@/components/layout/RightPanel.vue";
 import { useAppStore } from "@/stores/useAppStore";
 import { useSceneStore } from "@/stores/useSceneStore";
 

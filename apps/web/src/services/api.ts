@@ -4,7 +4,7 @@ const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3001
 // 响应接口
 export interface ApiResponse<T = any> {
   success: boolean;
-  data: T;
+  data: T | null;
   message?: string;
   error?: string;
 }
