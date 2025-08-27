@@ -5,7 +5,7 @@ alwaysApply: true
 
 ---
 description: Vue.js best practices and patterns for modern web applications
-globs: **/*.vue, **/*.ts, components/**/*
+globs: **/*.vue, **/*.ts, components/**/*,  **/*.tsx,  **/*.jsx
 ---
 
 # Vue.js Best Practices
